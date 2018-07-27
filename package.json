@@ -1,5 +1,5 @@
 {
-  "name": "vuedemo",
+  "name": "vue-echarts",
   "version": "1.0.0",
   "description": "a vue.js project",
   "author": "ZhangJincheng",
@@ -10,8 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "echarts": "^4.1.0",
     "swiper": "^4.3.3",
+    "v-charts": "^1.17.8",
     "vue": "2.5.2",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-# vuedemo
+# vue-echarts
 
 > a vue.js project
 
