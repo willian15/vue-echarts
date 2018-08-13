@@ -1,38 +1,34 @@
 <template>
     <div>
-      <div id="barContainer" style="width:800px; height:600px"></div>
+      <div id="datasetContainer" style="width:500px; height:500px"></div>
     </div>
 </template>
 /**
 *@author ZhangJincheng
-*@date 2018-7-27 10:51
+*@date 2018-7-30 15:07
 */
 <script type="text/ecmascript-6">
-  import {option} from '../../config/async-barChart-option'
+  import {option} from '../../config/dataset'
   export default {
-    name:'',
-    data(){
-      return{
+    name: '',
+    data () {
+      return {
 
       }
     },
     methods: {
       drawBarChart() {
         //初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('barContainer'));
+        let myChart = this.$echarts.init(document.getElementById('datasetContainer'));
         //绘制基本图表
         myChart.setOption(option);
 
-        this.$http.get('static/data/asyncBarChart.json').then(res => {
+        this.$http.get('static/data/dataset.json').then(res => {
           setTimeout(()=>{  //未来让加载动画效果明显,这里加入了setTimeout,实现2s延时
             myChart.hideLoading(); //隐藏加载动画
             myChart.setOption({
-              xAxis:{
-                data:res.data.categories,
-                name:res.data.a
-              },
               series: [{
-                data: res.data.product
+                source: res.data
               }]
             })
           }, 1000 );

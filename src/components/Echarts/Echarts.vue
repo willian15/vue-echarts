@@ -20,28 +20,33 @@
       myChart.setOption({
         title: {
           show:true,
-          text: '折线图',
+          text: '柱状图',
           left:100,
           padding: [10,20,5,10]
         },
+        legend: {},
         tooltip: {
           trigger: 'axis' //通过哪种方式触发tip
         },
+        dataset: {
+          // 提供一份数据。
+          source: [
+            ['product', '2015', '2016', '2017'],
+            ['Matcha Latte', 43.3, 85.8, 93.7],
+            ['Milk Tea', 83.1, 73.4, 55.1],
+            ['Cheese Cocoa', 86.4, 65.2, 82.5],
+            ['Walnut Brownie', 72.4, 53.9, 39.1]
+          ]
+        },
         xAxis: {
-          data: ["衬衫","qiuyi","雪纺衫","裤子","高跟鞋","袜子"],
-          name:'产品'
+          type:'category'
         },
         yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'line',
-          data: [5, 20, 36, 10, 10, 20],
-          itemStyle:{
-            normal:{
-              color:'hotpink'
-            }
-          }
-        }]
+        series: [
+          {type: 'bar'},
+          {type: 'bar'},
+          {type: 'bar'}
+        ]
       });
     }
   }

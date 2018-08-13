@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
+</head>
+
+<body>
+<input type="file" onchange="importf(this)"/>
+<div id="demo"></div>
+<script>
+
+  function importf(obj) {//导入
+    let wb;//读取完成的数据
+    let rABS = false; //是否将文件读取为二进制字符串
+    let table = [];
+    if(!obj.files) {
+      return;
+    }
+    let f = obj.files[0];
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      let data = e.target.result;
+
+      if(rABS) {
+        wb = XLSX.read(btoa(fixdata(data)), {//手动转化
+          type: 'base64'
+        });
+      } else {
+        wb = XLSX.read(data, {
+          type: 'binary'
+        });
+      }
+      //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
+      //wb.Sheets[Sheet名]获取第一个Sheet的数据
+//      alert(wb.Sheets[wb.SheetNames[0]]);
+//      console.log(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
+      table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+
+      console.log(table);
+      let dName = [];
+      let geo = {};
+      let point = [];
+      for (let i = 0;i < table.length;i++) {
+        let a = ',';
+        let name = table[i].景点;
+        let lng = table[i].经度;
+        let lat = table[i].纬度;
+//        console.log(lng);
+//        console.log(lat);
+//        dName.push(name);
+        geo = lng.concat(a,lat);
+        point.push({
+          name,geo
+        })
+      }
+//      console.log(dName);
+      console.log(geo);
+      console.log(point);
+//      document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+    };
+    if(rABS) {
+      reader.readAsArrayBuffer(f);
+    } else {
+      reader.readAsBinaryString(f);
+    }
+  }
+
+  function fixdata(data) { //文件流转BinaryString
+    let o = "",
+      l = 0,
+      w = 10240;
+    for(; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+  }
+
+</script>
+</body>
+
+</html>
+

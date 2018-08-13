@@ -7,7 +7,9 @@
     <!--<Guage></Guage>-->
     <!--<Radar></Radar>-->
     <!--<Pie></Pie>-->
-    <Bar></Bar>
+    <!--<Bar></Bar>-->
+    <ex></ex>
+    <!--<DataSet></DataSet>-->
   </div>
 </template>
 
@@ -18,6 +20,9 @@
   import Radar from "./components/Echarts/Radar.vue"
   import Pie from "./components/Echarts/Pie.vue"
   import Bar from "./components/Echarts/async-bar-chart.vue"
+  import DataSet from "./components/Echarts/DataSet.vue"
+  import ex from "./components/Echarts/async-excel-chart.vue"
+  import exc from "./components/Echarts/excel.vue"
   export default {
     name: "App",
     data() {},
@@ -27,7 +32,10 @@
       Guage,
       Radar,
       Pie,
-      Bar
+      Bar,
+      DataSet,
+      ex,
+      exc
     }
   }
 </script>
