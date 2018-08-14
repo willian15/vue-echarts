@@ -40,7 +40,6 @@
       table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
       console.log(table);
-      let dName = [];
       let geo = {};
       let point = [];
       for (let i = 0;i < table.length;i++) {
@@ -51,12 +50,13 @@
 //        console.log(lng);
 //        console.log(lat);
 //        dName.push(name);
-        geo = lng.concat(a,lat);
+        geo = lng.concat(',',lat,']');
+//        geo.push({lng, lat});
         point.push({
           name,geo
         })
       }
-//      console.log(dName);
+
       console.log(geo);
       console.log(point);
 //      document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );

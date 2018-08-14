@@ -8,6 +8,7 @@
       <el-table-column label="纬度" prop="lat" show-overflow-tooltip></el-table-column>
       <el-table-column label="信息" prop="info" show-overflow-tooltip></el-table-column>
     </el-table>
+    <div id="barContainer" style="width:800px; height:600px;"></div>
   </div>
 </template>
 /**
@@ -16,6 +17,8 @@
 */
 <script>
   import XLSX from "xlsx"
+  import {option} from '../../config/geomap'
+  import xj from '../../config/XJboundary.json'
 
   export default {
     data() {
@@ -26,6 +29,7 @@
     },
     mounted() {
       this.imFile = document.getElementById('imFile');
+      this.drawBarChart();
     },
     methods:{
       uploadFile:function () {
@@ -57,9 +61,27 @@
 
           let table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
-          $this.dealFile($this.analyzeData(table)); // analyzeData: 解析导入数据
+          //构造echarts数据
+          let geo = {};
+          let point = [];
+          for (let i = 0;i < table.length;i++) {
+            let name = table[i]['name'];
+            let lng = table[i]['lng'];
+            let lat = table[i]['lat'];
 
-          console.log(table);
+            geo = lng.concat(',',lat);
+            point.push({
+              'name':name,
+              'value':geo
+            })
+          }
+          console.log(geo);
+//          console.log(point);
+
+          $this.dealFile($this.analyzeData(table)); // analyzeData: 解析导入数据
+          $this.drawBarChart(point);
+
+//          console.log(table);
         };
 
         if(rABS) {
@@ -72,15 +94,31 @@
         return data
       },
       dealFile: function (data) {   // 处理导入的数据
-        console.log(data);
+//        console.log(data);
         this.imFile.value = '';
         this.fullscreenLoading = false;
         if (data.length <= 0) {
-          this.errorDialog = true
+          this.errorDialog = true;
           this.errorMsg = '请导入正确信息'
         } else {
           this.excelData = data
         }
+      },
+      drawBarChart:function (point) {
+//        console.log(point);
+        let myChart = this.$echarts.init(document.getElementById('barContainer'));
+        this.$echarts.registerMap('新疆', xj);
+        myChart.setOption(option);
+        myChart.setOption({
+          series: [
+            {
+              name: '评论数',
+              type: 'scatter',
+              coordinateSystem: 'geo',
+               data: point,//调用数据
+
+            }]
+        })
       }
     }
 
