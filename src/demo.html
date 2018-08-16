@@ -39,28 +39,28 @@
 //      console.log(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
       table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
-      console.log(table);
-      let geo = {};
-      let point = [];
-      for (let i = 0;i < table.length;i++) {
-        let a = ',';
-        let name = table[i].景点;
-        let lng = table[i].经度;
-        let lat = table[i].纬度;
+//      console.log(table);
+
+//      document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+    };
+    console.log(table);
+    let geo = {};
+    let point = [];
+    for (let i = 0;i < table.length;i++) {
+      let a = ',';
+      let name = table[i].景点;
+      let lng = table[i].经度;
+      let lat = table[i].纬度;
 //        console.log(lng);
 //        console.log(lat);
 //        dName.push(name);
-        geo = lng.concat(',',lat,']');
+      geo = lng.concat(',',lat,']');
 //        geo.push({lng, lat});
-        point.push({
-          name,geo
-        })
-      }
+      point.push({
+        name,geo
+      })
+    }
 
-      console.log(geo);
-      console.log(point);
-//      document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
-    };
     if(rABS) {
       reader.readAsArrayBuffer(f);
     } else {
