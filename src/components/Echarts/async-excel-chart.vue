@@ -63,7 +63,6 @@
 
 
           $this.dealFile($this.analyzeData(table)); // analyzeData: 解析导入数据
-//          $this.drawBarChart(point);
           $this.jsonData(table);
 
         };
@@ -88,30 +87,25 @@
           this.excelData = data
         }
       },
-      jsonData:function (data) {
+      jsonData:function (data) {  // 构造echarts指定的数据结构
 //        console.log(data)
+        let $this = this;
         let point = [];
-        let name;
         let geoArr = [];
         for (let i in data) {
-          name = data[i]['name'];
+          let name = data[i]['name'];
+          let info = data[i]['info'];
           let lng = data[i]['lng'];
           let lat = data[i]['lat'];
-          let lngArr = [];
-          let latArr = [];
           let geo = [];
-          lngArr.push(parseFloat(lng));
-          latArr.push(lat);
-
-//          geo = lng.concat(',',lat)
-//          console.log(parseFloat(lngArr));
-//          console.log(parseFloat(latArr));
-//          console.log(geo);
-          console.log(lngArr)
-          geoArr.push(geo)
+          geo.push(parseFloat(lng),parseFloat(lat));
+//          console.log(info)
+//          console.log(geo)
+          geoArr.push(geo);
+          point.push({'name':name,'value':geo.concat(parseFloat(info))})
         }
-
-//        console.log(geoArr)
+        console.log(point);
+        $this.drawBarChart(point);
       },
       drawBarChart:function (point) {
 //        console.log(point);
