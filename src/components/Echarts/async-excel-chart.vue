@@ -61,27 +61,10 @@
 
           let table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
-          //构造echarts数据
-          let geo = {};
-          let point = [];
-          for (let i = 0;i < table.length;i++) {
-            let name = table[i]['name'];
-            let lng = table[i]['lng'];
-            let lat = table[i]['lat'];
-
-            geo = lng.concat(',',lat);
-            point.push({
-              'name':name,
-              'value':geo
-            })
-          }
-          console.log(geo);
-//          console.log(point);
 
           $this.dealFile($this.analyzeData(table)); // analyzeData: 解析导入数据
-          $this.drawBarChart(point);
+          $this.jsonData(table);
 
-//          console.log(table);
         };
 
         if(rABS) {
@@ -104,6 +87,26 @@
           this.excelData = data
         }
       },
+      jsonData:function (data) {  // 构造echarts指定的数据结构
+//        console.log(data)
+        let $this = this;
+        let point = [];
+        let geoArr = [];
+        for (let i in data) {
+          let name = data[i]['name'];
+          let info = data[i]['info'];
+          let lng = data[i]['lng'];
+          let lat = data[i]['lat'];
+          let geo = [];
+          geo.push(parseFloat(lng),parseFloat(lat));
+//          console.log(info)
+//          console.log(geo)
+          geoArr.push(geo);
+          point.push({'name':name,'value':geo.concat(parseFloat(info))})
+        }
+        console.log(point);
+        $this.drawBarChart(point);
+      },
       drawBarChart:function (point) {
 //        console.log(point);
         let myChart = this.$echarts.init(document.getElementById('barContainer'));
@@ -115,8 +118,7 @@
               name: '评论数',
               type: 'scatter',
               coordinateSystem: 'geo',
-               data: point,//调用数据
-
+              data: point,//调用数据
             }]
         })
       }
