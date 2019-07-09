@@ -5,16 +5,13 @@
 </template>
 /**
 *@author ZhangJincheng
-*@date 2018-7-30 15:07
 */
 <script type="text/ecmascript-6">
   import {option} from '../../config/dataset'
   export default {
     name: '',
     data () {
-      return {
-
-      }
+      return {}
     },
     methods: {
       drawBarChart() {

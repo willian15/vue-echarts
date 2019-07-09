@@ -5,7 +5,7 @@
 </template>
 /**
 *@author ZhangJincheng
-*@date 2018-7-27 9:38
+
 */
 <script type="text/ecmascript-6">
   import {option} from "../../config/radar-option"

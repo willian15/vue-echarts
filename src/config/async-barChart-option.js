@@ -1,10 +1,10 @@
 /**
  *@author ZhangJincheng
- *@date 2018-7-27 10:48
+ *@date 2019-7-7 10:48
  */
 
 export const option = {
-  title: { text: 'demo简单柱状图' },
+  title: { text: '简单柱状图' },
   tooltip: {},
   xAxis: {
     data: [],
@@ -12,9 +12,9 @@ export const option = {
   },
   yAxis: {},
   series: [{
-    name: '销量',
+    name: '人数',
     type: 'bar',
     data: [],
-    color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+    color:['#579ea8','#2f4554', '#cb6baa', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
   }]
 };

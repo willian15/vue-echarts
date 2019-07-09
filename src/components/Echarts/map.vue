@@ -5,7 +5,7 @@
 </template>
 /**
 *@author ZhangJincheng
-*@date 2018-8-14 10:57
+
 */
 <script type="text/ecmascript-6">
     import {option} from "../../config/geomap";

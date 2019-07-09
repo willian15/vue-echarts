@@ -1,13 +1,10 @@
 /**
  *@author ZhangJincheng
- *@date 2018-8-14 10:43
  */
 export const option = {
   backgroundColor: '#044161',
   title: {
     text: '新疆主要旅游景点及其评论数分布',
-    // subtext: 'data from PM25.in',
-    // sublink: 'http://www.pm25.in',
     left: 'center',
     textStyle: {
       color: '#fff'
