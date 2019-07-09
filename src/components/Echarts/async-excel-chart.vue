@@ -18,7 +18,7 @@
 <script>
   import XLSX from "xlsx"
   import {option} from '../../config/geomap'
-  import xj from '../../config/XJboundary.json'
+  import xj from '../../config/boundary/XJboundary.json'
 
   export default {
     data() {

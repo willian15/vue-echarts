@@ -15,9 +15,9 @@
 *@author ZhangJincheng
 */
 <script>
-  import XLSX from "xlsx"
+  // import XLSX from "xlsx"
   import {option} from '../../config/map'
-  import map from '../../config/rongchang.json'
+  import map from '../../config/boundary/rongchang.json'
 
   export default {
     data() {
@@ -33,6 +33,10 @@
         this.$echarts.registerMap('self_def_map', map);
 
         myChart.setOption(option);
+
+        this.$http.get('static/data/geoCoordMap.json').then(res => {
+          console.log(res);
+        })
       }
     },
     mounted() {

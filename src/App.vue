@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <!--创建一个echarts的容器-->
-    <!--<div id="echartContainer" style="width:500px; height:500px"></div>-->
     <!--<Chart></Chart>-->
     <!--<Echarts></Echarts>-->
     <!--<Guage></Guage>-->
     <!--<Radar></Radar>-->
     <!--<Pie></Pie>-->
-    <Bar></Bar>
+    <!--<Bar></Bar>-->
     <!--<ex></ex>-->
-    <!--<ex_test></ex_test>-->
+    <ex_test></ex_test>
     <!--<DataSet></DataSet>-->
   </div>
 </template>

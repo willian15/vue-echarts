@@ -10,7 +10,9 @@ export const option = {
     data: [],
     name: ''
   },
-  yAxis: {},
+  yAxis: {
+    name:'人数'
+  },
   series: [{
     name: '人数',
     type: 'bar',
