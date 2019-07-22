@@ -35,7 +35,19 @@
         myChart.setOption(option);
 
         this.$http.get('static/data/geoCoordMap.json').then(res => {
-          console.log(res);
+          var coodData = res.data.coodMap;
+          var line = res.data.line;
+          console.log(coodData);
+          console.log(line);
+          for (var i in coodData) {
+            // var qy_name = i;
+            // console.log(qy_name);
+            // var jwd = coodData[i];
+            // console.log(jwd);
+          }
+          for (var j = 0; j < line.length; j++) {
+            console.log(line[j])
+          }
         })
       }
     },
